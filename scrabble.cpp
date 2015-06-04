@@ -148,7 +148,7 @@ void Scrabble::unscramble (string jumble)
     
     int max = (int)maxScore (matches);
     cout << setw(2) << max << ' ' << jumble << ':';
-    if (max == 0) cout << "No words found.\n";
+    if ((max == 0) || (jumble.length() > 7)) cout << "No words found.\n";
     else
     {
         for (set<Word>::const_iterator iter = matches.begin(); iter != matches.end(); iter++)
