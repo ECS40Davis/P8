@@ -33,7 +33,7 @@ class Word
     friend class Scrabble;
     
 public:
-    Word(string w = string(""), int v = 0) : word(w), value(v)
+    Word(string w = string(""), int v = 0) : value(v), word(w)
     {
         
     } // 
