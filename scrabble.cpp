@@ -103,7 +103,7 @@ bool Scrabble::validWord(const string &word) const
     {
         j++;
         
-        if ((*i >= 'z') || (*i <= 'a'))
+        if ((*i > 'z') || (*i < 'a'))
             break;
         
         if (j == (int)word.length())
