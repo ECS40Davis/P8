@@ -95,12 +95,20 @@ void Scrabble::readBank (const char *file)
 
 bool Scrabble::validWord(const string &word) const
 {
-    int i;
-    for (i = 0; i < 7 && i < (int)word.length() && 'z' >= word[i] && word[i]>= 'a'; i++);
-    if(i == (int)word.length())
+    string::const_iterator i;
+    int j = 0;
+    
+    for (i = word.begin(); word.length() <= 7; i++) //
+    {
+        if ((*i >= 'z') || (*i <= 'a'))
+            break;
+        
+        if (j == (int)word.length())
             return true;
+        j++;
+    } // for all the letters in the word
     return false;
-}
+} // validWord
 
 int Scrabble::scoreWord (const string &word)
 {
