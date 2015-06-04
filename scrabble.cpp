@@ -116,7 +116,7 @@ int Scrabble::scoreWord (const string &word)
 {
     int score = 0;
     for (string::const_iterator iter = word.begin(); iter<word.end(); iter++)
-        score += letterValues[*iter];
+        score += letterValues.find(*iter)->second;
     return score;
 }
 
