@@ -12,16 +12,16 @@ typedef map<char, int> LetterValue;
 
 void subStrings (const string &sref, set<string> &subs)
 {
-    string sstr = sref;
-    sort ( sstr.begin(), sstr.end() );
+    string str = sref;
+    sort ( str.begin(), str.end() );
     
     do{
-        for (int i = 0; i < sstr.length(); i++)
+        for (unsigned i = 0; i<str.length(); i++)
         {
-            subs.insert (sstr.substr(0, i + 1));
+            subs.insert (str.substr(0, i+1));
         }
         
-    }while (next_permutation(sstr.begin(), sstr.end()));
+    }while (next_permutation(str.begin(), str.end()));
 }
 
 class Word
@@ -37,8 +37,7 @@ public:
         
     }
     
-    bool operator < (const Word &rhs) const
-    {
+    bool operator< (const Word &rhs) const{
         
         if (word.compare(rhs.word) < 0)
             return true;
@@ -46,8 +45,7 @@ public:
         
     }
     
-    bool operator == (string & rhs) const
-    {
+    bool operator == (string & rhs) const{
     
         if (word.compare(rhs) == 0)
             return true;
@@ -62,17 +60,15 @@ class Scrabble
     
     LetterValue letterValues;
     set<Word> wordBank;
-    
-    friend class Word;
 
 public:
 
     Scrabble();
-    void readFile(const char *file);
+    void readBank(const char *file);
     bool validWord(const string &word) const;
     int scoreWord(const string &word);
     int maxScore(const set<Word> &bank);
-    void unscrabble(string jumble);
+    void unscramble(string jumble);
 
 };
 
@@ -85,7 +81,7 @@ Scrabble::Scrabble()
         letterValues.insert( LetterValue::value_type((char)i + 'a', values[i]) );
 }
 
-void Scrabble::readFile (const char *file)
+void Scrabble::readBank (const char *file)
 {
     ifstream inf(file);
     string word;
@@ -100,10 +96,10 @@ void Scrabble::readFile (const char *file)
 bool Scrabble::validWord(const string &word) const
 {
     int i;
-    for (i = 0; i < 7 && i < word.length() && 'a' <= word[i] && word[i] <= 'z'; i++)
-        if(i == (int)word.length())
+    for (i = 0; i < 7 && i < (int)word.length() && 'z' >= word[i] && word[i]>= 'a'; i++);
+    if(i == (int)word.length())
             return true;
-        return false;
+    return false;
 }
 
 int Scrabble::scoreWord (const string &word)
@@ -123,7 +119,7 @@ int Scrabble::maxScore(const set<Word> &bank)
     return max;
 }
 
-void Scrabble::unscrabble (string jumble)
+void Scrabble::unscramble (string jumble)
 {
     set<Word> matches;
     set<Word>::iterator ref;
@@ -142,28 +138,26 @@ void Scrabble::unscrabble (string jumble)
     
     int max = (int)maxScore (matches);
     cout << setw(2) << max << ' ' << jumble << ':';
-    if (max == 0) cout << "No words found.";
+    if (max == 0) cout << "No words found.\n";
     else
     {
         for (set<Word>::const_iterator iter = matches.begin(); iter != matches.end(); iter++)
             if (iter->value == max)
-                cout << ' ' << iter->word;
+                cout << ' ' << iter->word << endl;
     }
     
 }
 
-
 int main(int argc, char **argv)
 {
     Scrabble game;
-    game.readFile("words.txt");
+    game.readBank("words.txt");
     ifstream test (argv[1]);
     string word;
     
     while(getline(test, word))
-        game.unscrabble(word);
+        game.unscramble(word);
     test.close();
     
     return 0;
 }
-
