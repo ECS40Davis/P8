@@ -152,8 +152,12 @@ void Scrabble::unscramble (string jumble)
     else
     {
         for (set<Word>::const_iterator iter = matches.begin(); iter != matches.end(); iter++)
+        {
             if (iter->value == max)
-                cout << ' ' << iter->word << endl;
+                    cout << ' ' << iter->word;
+        }
+        
+        cout << endl;
     }
     
 }
