@@ -8,7 +8,7 @@
 
 using namespace std;
 
-typedef map<char, int> LetterValue;
+typedef map<char, short> LetterValue;
 
 void subStrings (const string &sref, set<string> &subs)
 {
@@ -75,7 +75,7 @@ public:
 
 Scrabble::Scrabble()
 {
-    int values [ ] = { 1, 3, 3, 2, 1, 4, 2, 4, 2, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10 };
+    short values [ ] = { 1, 3, 3, 2, 1, 4, 2, 4, 2, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10 };
     
     for (int i = 0; i < 26; i++)
         letterValues.insert( LetterValue::value_type((char)i + 'a', values[i]) );
