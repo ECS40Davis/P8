@@ -101,12 +101,13 @@ bool Scrabble::validWord(const string &word) const
     
     for (i = word.begin(); word.length() <= 7; i++) //
     {
+        j++;
+        
         if ((*i >= 'z') || (*i <= 'a'))
             break;
         
         if (j == (int)word.length())
             return true;
-        j++;
     } // for all the letters in the word
     return false;
 } // validWord
