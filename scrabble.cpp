@@ -19,10 +19,11 @@ void subStrings (const string &sref, set<string> &subs)
         for (unsigned i = 0; i<str.length(); i++)
         {
             subs.insert (str.substr(0, i+1));
-        }
+        } // for all the letters in the string
         
     }while (next_permutation(str.begin(), str.end()));
-}
+    
+} // void subStrings
 
 class Word
 {
@@ -35,7 +36,7 @@ public:
     Word(string w = string(""), int v = 0) : word(w), value(v)
     {
         
-    }
+    } // 
     
     bool operator< (const Word &rhs) const{
         
